@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block results %}
+<div class="col-md-4 text-center"></div>
+<div class="col-md-4 text-center">
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Слово</th>
+                <th>Косинусная близость</th>
+            </tr>
+        </thead>
+        {% for k, v in res.items() %}
+        <tr>
+            <th>{{ k }}</th>
+            <th>{{ v }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="col-md-4 text-center"></div>
+{% endblock results %}
