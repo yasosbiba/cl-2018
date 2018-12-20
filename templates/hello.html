@@ -1,64 +1,44 @@
 {% extends "layout.html" %}
 {% block search %}
-<div class="col-md-6 text-center">
-        <h5>Наша модель</h5>
-        <h6>Семантический ассоциат</h6>
-        <form class="form-inline my-2 my-lg-0 justify-content-center" action="/search">
-                <input class="form-control mr-sm-2" type="text" placeholder="Наберите слово" aria-label="Search" name="word">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
-        </form>
+<div class="row">
+        <div class="col-md-12 text-center description">
+                <b>
+                        Семантический ассоциат
+                </b>
+        </div>
 </div>
-<div class="col-md-6 text-center">
-        <h5>Модель с <a href="http://rusvectores.org/ru/models/">RusVectors</a></h5>
-        <h6>Семантический ассоциат</h6>
-        <form class="form-inline my-2 my-lg-0 justify-content-center" action="/rusvectors">
-                <input class="form-control mr-sm-2" type="text" placeholder="Наберите слово" aria-label="Search" name="word-wv">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
-        </form>
-
+<div class="row">
+        <div class="col-md-12 text-center">
+                <form class="form-inline my-2 my-lg-0 justify-content-center" action="/search/synonyms">
+                        <div id="the-basics">
+                                <input class="form-control mr-sm-2 typeahead" type="text" placeholder="Наберите слово"
+                                        aria-label="Search" name="word">
+                        </div>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
+                </form>
+        </div>
 </div>
-<script>
-        var substringMatcher = function (strs) {
-                return function findMatches(q, cb) {
-                        var matches, substringRegex;
-
-                        // an array that will be populated with substring matches
-                        matches = [];
-
-                        // regex used to determine if a string contains the substring `q`
-                        substrRegex = new RegExp(q, 'i');
-
-                        // iterate through the pool of strings and for any string that
-                        // contains the substring `q`, add it to the `matches` array
-                        $.each(strs, function (i, str) {
-                                if (substrRegex.test(str)) {
-                                        matches.push(str);
-                                }
-                        });
-
-                        cb(matches);
-                };
-        };
-
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-                'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ];
-
-        $('#the-basics .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-        },
-                {
-                        name: 'states',
-                        source: substringMatcher(states)
-                });
-</script>
-{% endblock search %}
+<div class="row">
+        <div class="col-md-12 text-center description">
+                <b>
+                        Косинусная близость 2-ух слов
+                </b>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-12 text-center">
+                <form class="form-inline my-2 my-lg-0 justify-content-center" action="/search/similarity">
+                        <div id="the-basics">
+                                <input class="form-control mr-sm-2 typeahead" type="text" placeholder="Наберите слово"
+                                        aria-label="Search" name="word">
+                        </div>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
+                </form>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-12 text-center description">
+                Примеры слов для поиска: камень_NOUN, теперь_ADV, близкий_ADJ, переживать_VERB, порок_NOUN и т.д.
+        </div>
+</div>
+{% endblock %}

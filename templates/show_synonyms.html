@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block results %}
+<div class="row">
+    <div class="col-md-6 text-center">
+        <table class="table table-striped">
+            <caption>Наша модель</caption>
+            <thead class="thead-light">
+                <tr>
+                    <th>Слово</th>
+                    <th>Косинусная близость</th>
+                </tr>
+            </thead>
+            {% for t in res %}
+            <tr>
+                <th>{{ t[0] }}</th>
+                <th>{{ t[1] }} </th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6 text-center">
+        <table class="table table-striped">
+            <caption>Модель с <a href="http://rusvectores.org/ru/models/">RusVectors</a></caption>
+            <thead class="thead-light">
+                <tr>
+                    <th>Слово</th>
+                    <th>Косинусная близость</th>
+                </tr>
+            </thead>
+            {% for k, v in res_rv.items() %}
+            <tr>
+                <th>{{ k }}</th>
+                <th>{{ v }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock results %}
